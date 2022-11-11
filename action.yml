@@ -1,9 +1,9 @@
-name: 'rok CLI'
+name: 'CLI for Immerok Cloud'
 description: 'Install & configure the Immerok Cloud CLI'
 author: 'immerok GmbH'
 branding:
   icon: chevron-right
-  color: blue
+  color: gray-dark
 inputs:
   version:
     required: true
