@@ -1,0 +1,13 @@
+name: 'rok CLI'
+description: 'Install & configure the Immerok Cloud CLI'
+author: 'immerok GmbH'
+inputs:
+  version:
+    required: true
+    description: The rok CLI version to install, e.g. "0.0.1".
+  accessToken:
+    required: false
+    description: Use "rok auth generate" to create an access token.
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
