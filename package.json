@@ -1,5 +1,5 @@
 {
-  "name": "install-rok-action",
+  "name": "setup-rok",
   "version": "0.0.0",
   "private": true,
   "description": "Install the Immerok Cloud CLI",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/immerok/install-rok-action.git"
+    "url": "git+https://github.com/immerok/setup-rok.git"
   },
   "keywords": [
     "actions",
