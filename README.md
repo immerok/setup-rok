@@ -3,6 +3,12 @@
 This action installs the [`rok` CLI](https://docs.immerok.cloud/docs/tutorials/getting_started/#setting-up-the-rok-cli)
 of [Immerok Cloud](https://www.immerok.io/) in your GitHub Actions workflow and allows you to log in.
 
+| Runner OS | Supported          |
+|-----------|--------------------|
+| Linux     | :white_check_mark: |
+| Windows   | :x:                |
+| MacOS     | :x:                |
+
 ## Usage
 
 ```yaml
