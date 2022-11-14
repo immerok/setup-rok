@@ -23,7 +23,11 @@ async function installCLI(version: string): Promise<void> {
     return core.addPath(cachePath)
   }
 
-  const url = `https://releases.immerok.cloud/rok/v${version}/rok-linux-amd64.tar.gz`
+  if (version !== 'latest' && !version.startsWith('v')) {
+    version = `v${version}`
+  }
+
+  const url = `https://releases.immerok.cloud/rok/${version}/rok-linux-amd64.tar.gz`
   const archiveDir = await tc.downloadTool(url)
   const extractedDir = await tc.extractTar(archiveDir)
 
