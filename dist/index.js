@@ -34,11 +34,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const exec = __importStar(__nccwpck_require__(1514));
 const path = __importStar(__nccwpck_require__(5622));
 const tc = __importStar(__nccwpck_require__(7784));
+const os_1 = __importDefault(__nccwpck_require__(2087));
+const SupportedPlatforms = ['linux', 'darwin'];
+const SupportedArchs = ['arm64', 'amd64'];
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -64,12 +70,36 @@ function installCLI(version) {
         if (version !== 'latest' && !version.startsWith('v')) {
             version = `v${version}`;
         }
-        const url = `https://releases.immerok.cloud/rok/${version}/rok-linux-amd64.tar.gz`;
+        const platform = getPlatform();
+        if (!SupportedPlatforms.includes(platform)) {
+            throw new Error(`Unsupported platform ${platform}`);
+        }
+        const arch = getArch();
+        if (!SupportedArchs.includes(arch)) {
+            throw new Error(`Unsupported architecture ${arch}`);
+        }
+        const url = `https://releases.immerok.cloud/rok/${version}/rok-${platform}-${arch}.tar.gz`;
         const archiveDir = yield tc.downloadTool(url);
         const extractedDir = yield tc.extractTar(archiveDir);
         const root = path.join(extractedDir, 'rok-linux-amd64');
         core.addPath(yield tc.cacheDir(root, 'rok', version));
     });
+}
+function getPlatform() {
+    let plat = os_1.default.platform();
+    if (plat === 'win32') {
+        plat = 'windows';
+    }
+    return plat;
+}
+function getArch() {
+    let arch = os_1.default.arch();
+    switch (arch) {
+        case 'x64':
+            arch = 'amd64';
+            break;
+    }
+    return arch;
 }
 function signIn(accessToken) {
     return __awaiter(this, void 0, void 0, function* () {
