@@ -7,7 +7,7 @@ of [Immerok Cloud](https://www.immerok.io/) in your GitHub Actions workflow and 
 |-----------|--------------------|
 | Linux     | :white_check_mark: |
 | Windows   | :x:                |
-| MacOS     | :x:                |
+| MacOS     | :white_check_mark: |
 
 ## Usage
 
